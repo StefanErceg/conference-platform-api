@@ -8,7 +8,7 @@ import org.unibl.etf.pisio.conference.models.requests.EventTypeRequest;
 import org.unibl.etf.pisio.conference.services.EventTypeService;
 
 @RestController
-@RequestMapping("event-types")
+@RequestMapping("/event-types")
 public class EventTypeController extends CrudController<Integer, EventTypeRequest, EventType> {
 
     private EventTypeService service;

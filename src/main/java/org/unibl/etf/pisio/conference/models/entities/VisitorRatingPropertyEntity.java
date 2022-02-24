@@ -1,5 +1,7 @@
 package org.unibl.etf.pisio.conference.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.unibl.etf.pisio.conference.base.BaseEntity;
 
@@ -9,6 +11,10 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "visitor_rating_property")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+
 public class VisitorRatingPropertyEntity implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +34,7 @@ public class VisitorRatingPropertyEntity implements BaseEntity<Integer> {
     private Integer rangeEnd;
     @OneToMany(mappedBy = "visitorRatingProperty")
     private List<AttendanceRatingEntity> attendanceRatings;
-    @OneToMany(mappedBy = "visitorRatingProperty")
-    private List<VisitorRatingSchemaHasVisitorRatingPropertyEntity> visitorRatingSchemaHasVisitorRatingProperties;
+    @ManyToMany(mappedBy = "properties",fetch = FetchType.LAZY)
+    private List<VisitorRatingSchemaEntity> schemas;
 
 }

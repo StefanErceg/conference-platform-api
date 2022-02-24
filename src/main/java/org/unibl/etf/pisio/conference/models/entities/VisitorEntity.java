@@ -4,7 +4,7 @@ import lombok.Data;
 import org.unibl.etf.pisio.conference.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,7 +17,14 @@ public class VisitorEntity implements BaseEntity<Integer> {
     @Basic
     @Column(name = "email", nullable = false, length = 255)
     private String email;
-    @OneToMany(mappedBy = "visitor")
-    private List<AttendanceEntity> attendances;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "attendance",
+            joinColumns = {
+                    @JoinColumn(name = "visitor_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)
+            },
+            inverseJoinColumns = @JoinColumn(name = "conference_id", referencedColumnName = "id",
+                    nullable = false, updatable = false))
+    private Set<ConferenceEntity> conferences;
 
 }

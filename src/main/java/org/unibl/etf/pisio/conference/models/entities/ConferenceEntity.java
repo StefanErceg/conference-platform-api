@@ -2,6 +2,7 @@ package org.unibl.etf.pisio.conference.models.entities;
 
 import lombok.Data;
 import org.unibl.etf.pisio.conference.base.BaseEntity;
+import org.unibl.etf.pisio.conference.models.Visitor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -27,8 +28,8 @@ public class ConferenceEntity implements BaseEntity<Integer> {
     @Basic
     @Column(name = "description", nullable = true, length = -1)
     private String description;
-    @OneToMany(mappedBy = "conference")
-    private List<AttendanceEntity> attendances;
+    @ManyToMany(mappedBy = "conferences")
+    private List<VisitorEntity> visitors;
     @ManyToOne
     @JoinColumn(name = "visitor_rating_schema_id", referencedColumnName = "id", nullable = false)
     private VisitorRatingSchemaEntity visitorRatingSchema;

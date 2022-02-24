@@ -8,7 +8,7 @@ import org.unibl.etf.pisio.conference.models.requests.ResourceTypeRequest;
 import org.unibl.etf.pisio.conference.services.ResourceTypeService;
 
 @RestController
-@RequestMapping("resource-types")
+@RequestMapping("/resource-types")
 public class ResourceTypeController extends CrudController<Integer, ResourceTypeRequest, ResourceType> {
     private final ResourceTypeService service;
 

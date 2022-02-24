@@ -46,6 +46,7 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
 
     @Override
     public <T, U> T insert(U data, Class<T> resultClass) {
+        System.out.println(data);
         E entity = modelMapper.map(data, entityClass);
         entity.setId(null);
         entity = repository.saveAndFlush(entity);

@@ -1,6 +1,11 @@
 package org.unibl.etf.pisio.conference.base;
 
 import lombok.Getter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.pisio.conference.exceptions.NotFoundException;
@@ -8,6 +13,7 @@ import org.unibl.etf.pisio.conference.exceptions.NotFoundException;
 import java.io.Serializable;
 import java.util.List;
 
+@CrossOrigin
 @Getter
 public abstract class CrudController<ID extends Serializable, REQUEST, RESPONSE> {
 
@@ -20,8 +26,8 @@ public abstract class CrudController<ID extends Serializable, REQUEST, RESPONSE>
     }
 
     @GetMapping
-    List<RESPONSE> findAll() {
-        return crudService.findAll(responseClass);
+    Page<RESPONSE> findAll(@PageableDefault(page = 0, size = 1000) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable page) {
+        return crudService.findAll(page, responseClass);
     }
 
     @GetMapping("/{id}")

@@ -8,7 +8,7 @@ import org.unibl.etf.pisio.conference.models.requests.CityRequest;
 import org.unibl.etf.pisio.conference.services.CityService;
 
 @RestController
-@RequestMapping("cities")
+@RequestMapping("/cities")
 public class CityController extends CrudController<Integer, CityRequest, City> {
 
     private final CityService cityService;
