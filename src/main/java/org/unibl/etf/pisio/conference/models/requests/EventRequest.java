@@ -1,18 +1,19 @@
 package org.unibl.etf.pisio.conference.models.requests;
 
 import lombok.Data;
-import org.unibl.etf.pisio.conference.models.Event;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Data
-public class SessionRequest {
+public class EventRequest {
+    private Integer id;
     private String name;
+    private Boolean active;
     private Timestamp start;
     private Timestamp end;
-    private Boolean active;
-    private Integer conferenceId;
+    private String accessCode;
+    private Integer locationId;
+    private Integer sessionId;
     private Integer moderatorId;
-    private List<Event> events;
+    private Integer eventTypeId;
 }
