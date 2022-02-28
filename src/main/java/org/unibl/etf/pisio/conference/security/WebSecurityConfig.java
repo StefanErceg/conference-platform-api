@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private HttpSecurity createAuthorizationRules(HttpSecurity http) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry interceptor = http.authorizeRequests();
-        interceptor = interceptor.antMatchers(HttpMethod.POST, "/login").permitAll().antMatchers(HttpMethod.POST, "/sign-up").permitAll();
+        interceptor = interceptor.antMatchers(HttpMethod.POST, "/login").permitAll().antMatchers(HttpMethod.POST, "/sign-up").permitAll().antMatchers(HttpMethod.GET, "/conference-list").permitAll().antMatchers(HttpMethod.GET, "/event-list").permitAll();
         return interceptor.anyRequest().authenticated().and();
     }
 

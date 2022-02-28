@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface EventEntityRepository extends JpaRepository<EventEntity, Integer> {
     List<EventEntity> findAllBySessionId(Integer sessionId);
+    List<EventEntity> findAllBySession_Conference_Id(Integer conferenceId);
 }
